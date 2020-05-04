@@ -33,7 +33,7 @@ public class DummyPatientDao  implements PatientDao{
         if(firstPatientByName.isEmpty()){
             return 0;
         }
-        listOfPatient.remove(firstPatientByName);
+        listOfPatient.remove(firstPatientByName.get());
         return 1;
     }
 
@@ -46,12 +46,24 @@ public class DummyPatientDao  implements PatientDao{
     @Override
     public int updateById(UUID id, Patient patient) {
         log.info("updateById() @Repository called..");
+      /* return return selectById(id).map(p -> {
+            int index = listOfPatient.indexOf(p);
+            if (index >= 0) {
+                listOfPatient.set(index, p);
+                return 1;
+            }
+            return 0;
+        }).orElse(0);*/
         Optional<Patient> updatePatientByName=selectById(id);
         if(updatePatientByName.isEmpty()){
+            log.info("no patient found");
             return 0;
         }
-        int index = listOfPatient.indexOf(updatePatientByName);
-        listOfPatient.set(index,patient);
+        Patient p=updatePatientByName.get();
+        log.info("got object..{}",p.getName());
+        int index=listOfPatient.indexOf(p);
+        listOfPatient.set(index,new Patient(id,patient.getName()));
+        log.info("update object with ..{}",patient.getName());
         return 1;
     }
 

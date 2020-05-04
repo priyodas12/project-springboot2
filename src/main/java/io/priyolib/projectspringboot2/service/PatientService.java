@@ -35,8 +35,9 @@ public class PatientService {
     }
 
     public int updateById(UUID id, Patient patient){
-        log.info("updateById() @Service called for...");
-        return patientDao.updateById(id,patient);
+        log.info("updateById() @Service called...");
+        int i=patientDao.updateById(id,patient);
+        return i;
     }
 
     public int deleteById(UUID id){
