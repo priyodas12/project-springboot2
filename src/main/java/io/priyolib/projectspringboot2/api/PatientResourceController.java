@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -32,5 +33,26 @@ public class PatientResourceController {
     public List<Patient> getAllPatient(){
         log.info("getAllPatient() @Controller called...");
         return patientService.getAllPatientInfo();
+    }
+
+    //get by Id
+    @GetMapping("/account/{id}")
+    public Patient getPersonById(@PathVariable("id") UUID id){
+        log.info("getPersonById() @Controller called...got {}",id);
+        return patientService.selectById(id).orElse(null);
+    }
+
+    //delete by Id
+    @DeleteMapping("/account/{id}")
+    public void deleteById(@PathVariable("id") UUID id){
+        log.info("deleteById() @Controller called...deleted {}",id);
+        patientService.deleteById(id);
+    }
+
+    //update by Id
+    @PutMapping("/account")
+    public void updateById(UUID id,Patient patient){
+        log.info("updateById() @Controller called...updated {}",id);
+        patientService.updateById(id,patient);
     }
 }

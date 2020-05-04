@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -30,5 +32,21 @@ public class PatientService {
     public List<Patient> getAllPatientInfo(){
         log.info("getAllPatientInfo() @Service called for...");
         return  patientDao.selectAllPatient();
+    }
+
+    public int updateById(UUID id, Patient patient){
+        log.info("updateById() @Service called for...");
+        return patientDao.updateById(id,patient);
+    }
+
+    public int deleteById(UUID id){
+        log.info("deleteById() @Service called for...");
+        return  patientDao.deletePatientRecord(id);
+    }
+
+    public Optional<Patient> selectById(UUID id){
+        log.info("deleteById() @Service called for...");
+        return  patientDao.selectById(id);
+
     }
 }
