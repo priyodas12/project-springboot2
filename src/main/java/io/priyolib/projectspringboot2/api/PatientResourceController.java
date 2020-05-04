@@ -50,8 +50,8 @@ public class PatientResourceController {
     }
 
     //update by Id
-    @PutMapping("/account")
-    public void updateById(UUID id,Patient patient){
+    @PutMapping("/account/{id}")
+    public void updateById(@PathVariable("id") UUID id,@RequestBody Patient patient){
         log.info("updateById() @Controller called...updated {}",id);
         patientService.updateById(id,patient);
     }
