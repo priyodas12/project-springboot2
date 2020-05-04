@@ -2,6 +2,7 @@ package io.priyolib.projectspringboot2.dao;
 
 import io.priyolib.projectspringboot2.model.Patient;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface PatientDao {
@@ -12,4 +13,5 @@ public interface PatientDao {
         UUID id=UUID.randomUUID();
         return registerPatient(id,patient);
     }
+    List<Patient> selectAllPatient();
 }

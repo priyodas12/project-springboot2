@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class PatientService {
@@ -23,5 +25,10 @@ public class PatientService {
     public int addPatient(Patient patient){
         log.info("addPatient() @Service called for {}",patient.getId());
         return patientDao.insertPatient(patient);
+    }
+
+    public List<Patient> getAllPatientInfo(){
+        log.info("getAllPatientInfo() @Service called for...");
+        return  patientDao.selectAllPatient();
     }
 }

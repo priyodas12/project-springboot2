@@ -21,4 +21,10 @@ public class DummyPatientDao  implements PatientDao{
         listOfPatient.add(new Patient(id,patient.getName()));
         return 1;
     }
+
+    @Override
+    public List<Patient> selectAllPatient() {
+        log.info("selectAllPatient() @Repository called..");
+        return listOfPatient;
+    }
 }
